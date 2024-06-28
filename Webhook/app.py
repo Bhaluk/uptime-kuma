@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/trigger-call', methods=['GET', 'POST'])
 def trigger_call():
-    account_sid = '<SID>'
+    account_sid = '<ACa0a00c265708da3710eb1e582f7b1d65>'
     auth_token = '<23a5d38b844d2bd15b3e884b2a8addab>'
     client = Client(account_sid, auth_token)
 
