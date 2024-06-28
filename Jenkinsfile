@@ -44,21 +44,21 @@ pipeline{
                 sh "trivy fs . > trivyfs.json"
             }
         }
-        stage("Docker Build"){
-            steps{
-                script{
-                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                       sh "docker build -t uptime ."
+        stage("Docker Build") {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'docker-hub-pat', toolName: 'docker') {
+                        sh "docker build -t uptime ."
                     }
                 }
             }
         }
-        stage("Docker Push"){
-            steps{
-                script{
-                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                       sh "docker tag uptime bhaluk/uptime:latest "
-                       sh "docker push bhaluk/uptime:latest "
+        stage("Docker Push") {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'docker-hub-pat', toolName: 'docker') {
+                        sh "docker tag uptime bhaluk/uptime:latest"
+                        sh "docker push bhaluk/uptime:latest"
                     }
                 }
             }
