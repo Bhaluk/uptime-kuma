@@ -48,7 +48,7 @@ pipeline{
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                        sh "docker build -t uptime ."
+                        sh "docker build -t uptime -f docker/Dockerfile ."
                     }
                 }
             }
